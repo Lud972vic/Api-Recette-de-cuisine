@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une recette{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Ajouter une recette</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <hr>
+    <a class="btn btn-outline-primary" href="/">Retour</a>
+</div>
+{% endblock %}

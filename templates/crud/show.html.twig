@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ recette.titre }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>{{ recette.titre }}</h1>
+        <p>{{ recette.soustitre }}</p>
+
+        <ul class="form-group">
+            <p>Les ingrédients : </p>
+            {% for c in condiment %}
+                <li class="form-control mb-2"> {{ c.libelle }}</li>
+            {% endfor %}
+        </ul>
+
+        <hr>
+        <a class="btn btn-outline-primary" href="/">Retour</a>
+    </div>
+{% endblock %}
