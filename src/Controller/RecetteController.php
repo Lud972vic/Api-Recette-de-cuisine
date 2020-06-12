@@ -119,7 +119,7 @@ class RecetteController extends AbstractController
     }
 
     /**
-     * @Route("/recette_delfiche/{id}", name="delete_recette", methods={"GET","DELETE"})
+     * @Route("/recette_delfiche/{id}", name="delete_recettefiche", methods={"GET","DELETE"})
      */
     public function delfiche(Request $request, $id)
     {
