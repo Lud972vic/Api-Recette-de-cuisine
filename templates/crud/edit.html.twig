@@ -4,10 +4,13 @@
 
 {% block body %}
     <div class="container">
+        <h1>Mettre à jour le titre et le sous-titre</h1>
+
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }}
+
+        <hr>
+        <a class="btn btn-outline-primary" href="/">Accueil</a>
     </div>
-    <hr>
-    <a class="btn btn-outline-primary" href="/">Retour</a>
 {% endblock %}

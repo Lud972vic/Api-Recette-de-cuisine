@@ -15,12 +15,12 @@ class AppFixtures extends Fixture
     {
         $faker = Factory:: create('fr_FR');
 
-        for ($j = 0; $j < 10; $j++) {
+        for ($j = 0; $j < 5; $j++) {
 
             $num = $j + 1;
             $recette = new Recette();
-            $recette->setTitre('Recette n° ' . $num . " : " . $faker->sentence($nbWords = 2, $variableNbWords = true));
-            $recette->setSoustitre('Sous-titre : ' . $faker->sentence($nbWords = 4, $variableNbWords = true));
+            $recette->setTitre('Recette n° ' . $num . " : " . $faker->sentence($nbWords = 1, $variableNbWords = true));
+            $recette->setSoustitre('Sous-titre : ' . $faker->sentence($nbWords = 3, $variableNbWords = true));
             $recette->setIngredients("");
 
             $manager->persist($recette);

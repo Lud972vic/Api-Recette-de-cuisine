@@ -59,7 +59,7 @@ class RecetteController extends AbstractController
     }
 
     /**
-     * @Route("/recettes", name="get_all_recettes", methods={"GET"})
+     * @Route("/recettes", name="get_all", methods={"GET"})
      */
     public function getAll(): JsonResponse
     {
@@ -116,6 +116,17 @@ class RecetteController extends AbstractController
         $this->recetteRepository->removeRecette($recette);
 
         return new JsonResponse(['status' => 'Recette supprimee'], Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/recette_delfiche/{id}", name="delete_recette", methods={"GET","DELETE"})
+     */
+    public function delfiche(Request $request, $id)
+    {
+        $recette = $this->recetteRepository->findOneBy(['id' => $id]);
+        $this->recetteRepository->removeRecette($recette);
+
+        return $this->redirect('/');
     }
 
     /**
@@ -217,7 +228,7 @@ class RecetteController extends AbstractController
         $recette = $entityManager->getRepository(Recette::class)->findOneBy(array('id' => $id));
 
         $form = $this->createFormBuilder($ingredient)
-            ->add('libelle', TextType::class, array('attr' => array('class' => 'form-control')))
+            ->add('libelle', TextType::class, array('attr' => array('class' => 'form-control', 'placeholder' => 'Ajouter vos condiments et Ajouter')))
             ->add('Enregistrer', SubmitType::class, array(
                 'label' => 'Ajouter',
                 'attr' => array('class' => 'btn btn-outline-primary mt-3')
@@ -238,7 +249,8 @@ class RecetteController extends AbstractController
         }
 
         return $this->render('crud/addingredient.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'recette' => $recette
         ));
     }
 }
