@@ -126,6 +126,7 @@ class RecetteController extends AbstractController
         $recette = $this->recetteRepository->findOneBy(['id' => $id]);
         $this->recetteRepository->removeRecette($recette);
 
+        $this->addFlash('success', 'Recette supprimée !');
         return $this->redirect('/');
     }
 
@@ -170,6 +171,7 @@ class RecetteController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
+            $this->addFlash('success', 'Recette actualisée !');
             return $this->redirect('/');
         }
 
@@ -207,6 +209,7 @@ class RecetteController extends AbstractController
             $entityManager->persist($recette);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Recette ajoutée !');
             return $this->redirect('/');
         }
 
@@ -245,7 +248,8 @@ class RecetteController extends AbstractController
             $entityManager->persist($ingredient);
             $entityManager->flush();
 
-            //return $this->redirect('/');
+            $this->addFlash('success', 'Ingrédient ajouté !');
+            return $this->redirect('/');
         }
 
         return $this->render('crud/addingredient.html.twig', array(

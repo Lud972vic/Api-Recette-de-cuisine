@@ -68,6 +68,12 @@
                class="btn btn-sm mb-2 btn-outline-dark">Ajouter une recette
             </a>
 
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             <div class="row">
                 {% if recettes | length >0 %}
 
@@ -113,8 +119,8 @@
             </div>
 
             <p class="text-secondary">Nombre de recette {{ recettes | length }} en base de données</p>
-            {% else %}
-                <p>Il n'y a aucune recette de crée</p>
+        {% else %}
+            <p>Il n'y a aucune recette de crée</p>
             {% endif %}
         </div>
     </div>

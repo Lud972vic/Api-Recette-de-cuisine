@@ -4,6 +4,7 @@
 
 {% block body %}
     <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-bg {{ app.session.flashbag.peek('success')|length > 0 ? '' : 'mb-5' }}"></nav>
         <h1>Ajouter une recette</h1>
 
         {{ form_start(form) }}
