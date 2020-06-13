@@ -10,9 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Condiment
 {
-
-
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -59,5 +56,4 @@ class Condiment
 
         return $this;
     }
-
 }

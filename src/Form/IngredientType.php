@@ -6,7 +6,6 @@ use App\Entity\Condiment;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class IngredientType extends AbstractType
 {
@@ -14,8 +13,7 @@ class IngredientType extends AbstractType
     {
         $builder
             ->add('libelle')
-            ->add('recette')
-        ;
+            ->add('recette');
     }
 
     public function configureOptions(OptionsResolver $resolver)

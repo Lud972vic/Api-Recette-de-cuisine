@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Condiment;
 use App\Entity\Recette;
 use App\Repository\RecetteRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -12,7 +13,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class RecetteController extends AbstractController
 {
@@ -81,9 +81,14 @@ class RecetteController extends AbstractController
     /**
      * @Route("/recettes_form", name="get_all_recettes", methods={"GET"})
      */
-    public function getAllRecette()
+    public function getAllRecette(Request $request, PaginatorInterface $paginator)
     {
-        $recettes = $this->recetteRepository->findAll();
+        $donnees = $this->recetteRepository->findAll();
+        $recettes = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            4
+        );
 
         return $this->render('crud/recette.html.twig', [
             'recettes' => $recettes,
@@ -176,7 +181,7 @@ class RecetteController extends AbstractController
         }
 
         return $this->render('crud/edit.html.twig', array(
-            'form' => $form->createView()
+            'editForm' => $form->createView()
         ));
     }
 
@@ -214,7 +219,7 @@ class RecetteController extends AbstractController
         }
 
         return $this->render('crud/add.html.twig', array(
-            'form' => $form->createView()
+            'newForm' => $form->createView()
         ));
 
     }
@@ -253,7 +258,7 @@ class RecetteController extends AbstractController
         }
 
         return $this->render('crud/addingredient.html.twig', array(
-            'form' => $form->createView(),
+            'ingredientForm' => $form->createView(),
             'recette' => $recette
         ));
     }

@@ -49,4 +49,9 @@ class RecetteRepository extends ServiceEntityRepository
         $this->manager->remove($recette);
         $this->manager->flush();
     }
+
+    public function findAll()
+    {
+        return $this->findBy(array(), array('id' => 'DESC'));
+    }
 }

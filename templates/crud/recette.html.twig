@@ -118,7 +118,10 @@
                 {% endfor %}
             </div>
 
-            <p class="text-secondary">Nombre de recette {{ recettes | length }} en base de données</p>
+            <div class="mt-2">
+                <p>Naviguer entre les pages : {{ knp_pagination_render(recettes) }}</p>
+                <p class="mt-2">Nombre de recette sur la page {{ recettes | length }}</p>
+            </div>
         {% else %}
             <p>Il n'y a aucune recette de crée</p>
             {% endif %}

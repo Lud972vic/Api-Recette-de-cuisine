@@ -14,8 +14,7 @@ class RecetteType extends AbstractType
         $builder
             ->add('titre')
             ->add('soustitre')
-            ->add('ingredients')
-        ;
+            ->add('ingredients');
     }
 
     public function configureOptions(OptionsResolver $resolver)
